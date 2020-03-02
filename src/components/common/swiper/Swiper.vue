@@ -119,7 +119,7 @@
 		  handleDom: function () {
         // 1.获取要操作的元素
         let swiperEl = document.querySelector('.swiper');
-        console.log(swiperEl)
+        // console.log(swiperEl)
         let slidesEls = swiperEl.getElementsByClassName('slide');
 
         // 2.保存个数
