@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+src/network/request.js
 /dist
 
 # local env files
@@ -19,4 +20,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
-/src/network
+src/network/request.js
