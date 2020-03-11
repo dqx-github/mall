@@ -23,6 +23,10 @@
   /* 使限定的框不会因为padding而影响框的宽高 */
   box-sizing: border-box;
 }
+/* 禁止触发默认的手势操作
+html{
+  touch-action: none
+} */
 
 body {
   font-family: Helvetica, Arial, sans-serif;

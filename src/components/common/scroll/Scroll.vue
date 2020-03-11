@@ -47,13 +47,15 @@
         this.bscroll.scrollTo(x,y,time);
       },
       refresh(){
-        console.log("-----")
         this.bscroll.refresh();
       },
       finishPullUp(){
         setTimeout(()=>{
            this.bscroll.finishPullUp();
-        },1000)
+        },2000)
+      },
+      getPositionY(){
+        return this.bscroll.y;
       }
     }
   }

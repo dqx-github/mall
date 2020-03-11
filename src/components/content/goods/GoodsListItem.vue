@@ -1,14 +1,12 @@
 <template>
-      <div class="goods-item">
-          <a :href="goodItem.link">
-            <img :src="goodItem.show.img" alt="" @load="loadImageItem">
-            <div class="goods-item-info">
-              <p>{{goodItem.title}}</p>
-              <span class="price">{{goodItem.price}} </span>
-              <span class="collect">{{goodItem.cfav}} </span>
-            </div>
-          </a>
-      </div>
+  <div class="goods-item" @click="goodsItemClick">
+    <img :src="goodItem.show.img" alt="" @load="loadImageItem">
+    <div class="goods-item-info">
+      <p>{{goodItem.title}}</p>
+      <span class="price">{{goodItem.price}} </span>
+      <span class="collect">{{goodItem.cfav}} </span>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -25,7 +23,12 @@
     },
     methods: {
       loadImageItem(){
+        //使用事件总线发送事件
         this.$bus.$emit('loadImageItem');
+      },
+      //点击跳转到详情页
+      goodsItemClick(){
+        this.$router.push('/detail/'+this.goodItem.iid);
       }
     }
   }

@@ -5,6 +5,7 @@ const Home = ()=> import('views/home/Home')
 const Category = ()=> import('views/category/Category')
 const My = ()=> import('views/my/My')
 const ShopCart = ()=> import('views/shopcart/ShopCart')
+const Detail = ()=> import('views/detail/Detail')
 
 //注册组件
 Vue.use(VueRouter)
@@ -29,6 +30,10 @@ const routes = [
   {
     path: '/my',
     component: My
+  },
+  {
+    path: '/detail/:iid',
+    component: Detail
   }
 ]
 const router = new VueRouter({
