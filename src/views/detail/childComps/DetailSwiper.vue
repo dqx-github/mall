@@ -1,7 +1,7 @@
 <template>
   <swiper class="detail-swiper">
     <swiper-item v-for="item in imageTop" :key="item">
-      <img :src="item" alt="">
+      <img :src="item" alt="" @load="imageLoad">
     </swiper-item>
   </swiper>
 </template>
@@ -22,6 +22,11 @@
     components: {
       Swiper,
       SwiperItem
+    },
+    methods: {
+      imageLoad(){
+        this.$emit('imageLoad')
+      }
     }
   }
 </script>

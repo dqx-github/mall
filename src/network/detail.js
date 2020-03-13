@@ -8,6 +8,13 @@ export function getGoodDetailById(iid){
     }
   })
 }
+
+export function getRecommend() {
+  return request({
+    url: "/recommend"
+  }).catch(err => err);
+}
+
 export class Goods{
   constructor(itemInfo,columns,services) {
     //标题
@@ -43,5 +50,14 @@ export class Shop{
     this.goodsCount = shopInfo.cGoods
     //店铺评分数组
     this.score = shopInfo.score
+  }
+}
+
+export class GoodParams {
+  constructor(itemParams){
+     // 注: images可能没有值(某些商品有值, 某些没有值)
+    this.image = itemParams.info.images ? info.images[0] : "";
+    this.infos = itemParams.info.set
+    this.sizes = itemParams.rule.tables
   }
 }

@@ -36,7 +36,7 @@
   import FeatureView from './childComps/FeatureView';
 
   import {getHomeMultidata,getHomeGoods} from 'network/home';
-  import {debounce} from '@/common/utils';
+  import {goodsImgListenerMixin} from '@/common/mixins';
   
 
   export default {
@@ -64,7 +64,7 @@
         isShow: false,
         topControlOffSet: 0,
         isShowTopControll: false,
-        savePositionY: 0
+        savePositionY: 0,
       }
     },
     created(){
@@ -76,13 +76,6 @@
         this.getHomeGoods(goodsKey)
       }
     },
-    mounted(){
-      //监听页面goodsItem图片加载，这里使用了事件总线
-      const refresh = debounce(this.$refs.scroll.refresh,500);
-       this.$bus.$on('loadImageItem',()=>{
-        refresh()
-      })  
-    },
     activated() {
       //划重点，这里必须将refresh放在scrollTo前面，不然会出现scrollTo自动回到顶部的问题
       this.$refs.scroll.refresh();
@@ -91,15 +84,16 @@
     deactivated() {
       //在离开当前路由时记录离开的y轴位置
       this.savePositionY = this.$refs.scroll.getPositionY()
-    },
-    destroyed() {
-      console.log('对象已销毁')
+      //离开时关闭监听
+      this.$bus.$off('loadImageItem',this.goodImageLoadLister)
+      
     },
     computed: {
       showGoods(){
         return this.goods[this.nowGoodsType].list
       }
     },
+    mixins: [goodsImgListenerMixin],
     methods: {
       /**
        * 事件监听相关的方法
